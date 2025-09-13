@@ -1,42 +1,362 @@
+```html
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="styles.css">
-    <title>Mi Sitio Web Moderno</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Anomic - Juego de Roblox</title>
+    <style>
+        /* Reset y base */
+        * {
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #0f0f0f, #1a1a1a);
+            color: #e0e0e0;
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        header {
+            background: #ff3c00;
+            padding: 25px 20px;
+            text-align: center;
+            box-shadow: 0 4px 10px rgba(255, 60, 0, 0.6);
+            user-select: none;
+        }
+        header h1 {
+            margin: 0;
+            font-size: 3rem;
+            font-weight: 900;
+            letter-spacing: 3px;
+            color: #fff;
+            text-shadow: 0 0 10px #ff3c00, 0 0 20px #ff3c00;
+        }
+        nav {
+            background: #222222cc;
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            padding: 18px 0;
+            box-shadow: inset 0 -2px 5px rgba(255, 60, 0, 0.3);
+            user-select: none;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            backdrop-filter: saturate(180%) blur(10px);
+        }
+        nav a {
+            color: #e0e0e0;
+            font-weight: 700;
+            font-size: 1.2rem;
+            text-decoration: none;
+            padding: 8px 15px;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            width: 0;
+            height: 3px;
+            background: #ff3c00;
+            border-radius: 2px;
+            transition: width 0.3s ease, left 0.3s ease;
+        }
+        nav a:hover,
+        nav a.active {
+            color: #ff3c00;
+            text-shadow: 0 0 8px #ff3c00;
+        }
+        nav a:hover::after,
+        nav a.active::after {
+            width: 60%;
+            left: 20%;
+        }
+        main {
+            flex-grow: 1;
+            max-width: 960px;
+            margin: 40px auto 60px;
+            padding: 0 20px;
+            min-height: 300px;
+        }
+        section {
+            display: none;
+            animation: fadeIn 0.5s ease forwards;
+        }
+        section.active {
+            display: block;
+        }
+        h2 {
+            font-size: 2rem;
+            margin-bottom: 20px;
+            border-bottom: 3px solid #ff3c00;
+            padding-bottom: 8px;
+            letter-spacing: 1.2px;
+            text-transform: uppercase;
+            font-weight: 900;
+            text-shadow: 0 0 6px #ff3c00;
+        }
+        p {
+            font-size: 1.1rem;
+            line-height: 1.6;
+            color: #ccc;
+            margin-bottom: 25px;
+        }
+        .btn-store {
+            display: inline-block;
+            background: linear-gradient(45deg, #ff3c00, #ff6a00);
+            color: white;
+            padding: 14px 32px;
+            border-radius: 30px;
+            font-weight: 700;
+            font-size: 1.1rem;
+            text-decoration: none;
+            box-shadow: 0 6px 15px rgba(255, 60, 0, 0.6);
+            transition: all 0.3s ease;
+            user-select: none;
+        }
+        .btn-store:hover {
+            background: linear-gradient(45deg, #ff6a00, #ff3c00);
+            box-shadow: 0 8px 20px rgba(255, 90, 0, 0.8);
+            transform: translateY(-3px) scale(1.05);
+        }
+        /* Servidores button same style */
+        #servers a.btn-store {
+            margin-top: 10px;
+        }
+        /* Pases container */
+        .passes-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 25px;
+        }
+        .pass-card {
+            background: #1f1f1f;
+            border-radius: 15px;
+            padding: 20px 15px 25px;
+            text-align: center;
+            box-shadow: 0 0 10px rgba(255, 60, 0, 0.15);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            cursor: pointer;
+            user-select: none;
+            position: relative;
+            overflow: hidden;
+        }
+        .pass-card:hover {
+            transform: translateY(-10px) scale(1.05);
+            box-shadow: 0 10px 25px rgba(255, 60, 0, 0.6);
+            background: linear-gradient(135deg, #2a2a2a, #3a1a00);
+        }
+        .pass-card img {
+            width: 110px;
+            height: 110px;
+            object-fit: contain;
+            margin-bottom: 15px;
+            border-radius: 12px;
+            background-color: transparent;
+            filter: drop-shadow(0 0 4px #ff3c00);
+            transition: filter 0.3s ease;
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .pass-card:hover img {
+            filter: drop-shadow(0 0 10px #ff6a00);
+        }
+        .pass-card a {
+            color: #ff3c00;
+            font-weight: 800;
+            font-size: 1.05rem;
+            text-decoration: none;
+            display: block;
+            word-wrap: break-word;
+            transition: color 0.3s ease;
+        }
+        .pass-card a:hover {
+            color: #ffa14d;
+            text-decoration: underline;
+        }
+        /* Footer */
+        footer {
+            background: #1f1f1f;
+            text-align: center;
+            padding: 18px 10px;
+            color: #777;
+            font-size: 0.9rem;
+            user-select: none;
+            box-shadow: inset 0 1px 3px rgba(255, 60, 0, 0.2);
+        }
+        /* Animations */
+        @keyframes fadeIn {
+            from {opacity: 0; transform: translateY(10px);}
+            to {opacity: 1; transform: translateY(0);}
+        }
+        /* Responsive tweaks */
+        @media (max-width: 480px) {
+            nav {
+                gap: 15px;
+                padding: 12px 0;
+            }
+            nav a {
+                font-size: 1rem;
+                padding: 6px 10px;
+            }
+            header h1 {
+                font-size: 2rem;
+                letter-spacing: 1.5px;
+            }
+            main {
+                margin: 25px auto 50px;
+            }
+            .pass-card {
+                padding: 15px 10px 20px;
+            }
+            .pass-card img {
+                width: 90px;
+                height: 90px;
+                margin-bottom: 10px;
+            }
+        }
+    </style>
 </head>
 <body>
     <header>
-        <nav>
-            <ul>
-                <li><a href="#">Inicio</a></li>
-                <li><a href="#sobre">Sobre Nosotros</a></li>
-                <li><a href="#servicios">Servicios</a></li>
-                <li><a href="#contacto">Contacto</a></li>
-            </ul>
-        </nav>
+        <h1>Anomic</h1>
     </header>
+    <nav>
+        <a id="nav-about" class="active">Acerca de</a>
+        <a id="nav-store">Tienda</a>
+        <a id="nav-servers">Servidores</a>
+        <a id="nav-passes">Pases</a>
+    </nav>
     <main>
-        <section id="inicio">
-            <h1>Bienvenido a Mi Sitio Web</h1>
-            <p>Este es un sitio web moderno y estilizado.</p>
+        <section id="about" class="active" aria-label="Sección Acerca de">
+            <h2>Acerca de Anomic</h2>
+            <p>Anomic es un juego de Roblox que ofrece una experiencia única y emocionante. Actualmente, no hay partidas en curso, pero puedes explorar la tienda y los pases disponibles para mejorar tu experiencia cuando el juego esté activo.</p>
         </section>
-        <section id="sobre">
-            <h2>Sobre Nosotros</h2>
-            <p>Información sobre nuestra empresa.</p>
+        <section id="store" aria-label="Sección Tienda">
+            <h2>Tienda</h2>
+            <p>La tienda de Anomic ofrece diversos artículos y mejoras para los jugadores. Explora las opciones para personalizar tu experiencia dentro del juego.</p>
+            <a href="https://www.roblox.com/games/4581966615/Anomic#!/store" target="_blank" rel="noopener" class="btn-store" aria-label="Visitar Tienda en Roblox">Visitar Tienda en Roblox</a>
         </section>
-        <section id="servicios">
-            <h2>Servicios</h2>
-            <p>Descripción de los servicios ofrecidos.</p>
+        <section id="servers" aria-label="Sección Servidores">
+            <h2>Servidores</h2>
+            <p>Explora los servidores activos de Anomic y únete a la partida que prefieras.</p>
+            <a href="https://www.roblox.com/games/4581966615/Anomic#!/game-instances" target="_blank" rel="noopener" class="btn-store" aria-label="Ver Servidores en Roblox">Ver Servidores en Roblox</a>
         </section>
-        <section id="contacto">
-            <h2>Contacto</h2>
-            <p>Formulario de contacto.</p>
+        <section id="passes" aria-label="Sección Pases">
+            <h2>Pases</h2>
+            <p>A continuación puedes ver los pases disponibles para Anomic. Haz clic en cualquiera para obtener más información o adquirirlos en Roblox.</p>
+            <div class="passes-container" role="list">
+                <div class="pass-card" role="listitem">
+                    <a href="https://www.roblox.com/game-pass/671178844/Advanced-Building" target="_blank" rel="noopener" title="Advanced Building">
+                        <img src="https://tr.rbxcdn.com/180DAY-2e321a8cedad766a8f755837dbee8e4c/420/420/Image/Png/noFilter" alt="Logo Advanced Building" />
+                        Advanced Building
+                    </a>
+                </div>
+                <div class="pass-card" role="listitem">
+                    <a href="https://www.roblox.com/game-pass/1009639528/Custom-VHS-Tapes" target="_blank" rel="noopener" title="Custom VHS Tapes">
+                        <img src="https://tr.rbxcdn.com/180DAY-35f15bd20d700cb117ae6e1cf1246694/420/420/Image/Png/noFilter" alt="Logo Custom VHS Tapes" />
+                        Custom VHS Tapes
+                    </a>
+                </div>
+                <div class="pass-card" role="listitem">
+                    <a href="https://www.roblox.com/game-pass/7953111/Advanced-Car-Dealer" target="_blank" rel="noopener" title="Advanced Car Dealer">
+                        <img src="https://tr.rbxcdn.com/180DAY-29156468b64bb31a71df5d0c8c3b760b/420/420/Image/Png/noFilter" alt="Logo Advanced Car Dealer" />
+                        Advanced Car Dealer
+                    </a>
+                </div>
+                <div class="pass-card" role="listitem">
+                    <a href="https://www.roblox.com/game-pass/11509035/Bypass-Team-Limit" target="_blank" rel="noopener" title="Bypass Team Limit">
+                        <img src="https://tr.rbxcdn.com/180DAY-8c19076ac4c9dd14970b5244fd670ebb/420/420/Image/Png/noFilter" alt="Logo Bypass Team Limit" />
+                        Bypass Team Limit
+                    </a>
+                </div>
+                <div class="pass-card" role="listitem">
+                    <a href="https://www.roblox.com/game-pass/7953108/Advanced-Gunsmith" target="_blank" rel="noopener" title="Advanced Gunsmith">
+                        <img src="https://tr.rbxcdn.com/180DAY-32103192165d5a89d8f7f35b3ec44634/420/420/Image/Png/noFilter" alt="Logo Advanced Gunsmith" />
+                        Advanced Gunsmith
+                    </a>
+                </div>
+                <div class="pass-card" role="listitem">
+                    <a href="https://www.roblox.com/game-pass/7953113/SWAT" target="_blank" rel="noopener" title="SWAT">
+                        <img src="https://tr.rbxcdn.com/180DAY-dbe1e3c96d2cfb059ec18498bedbc52f/420/420/Image/Png/noFilter" alt="Logo SWAT" />
+                        SWAT
+                    </a>
+                </div>
+                <div class="pass-card" role="listitem">
+                    <a href="https://www.roblox.com/game-pass/7953104/Custom-Audio" target="_blank" rel="noopener" title="Custom Audio">
+                        <img src="https://tr.rbxcdn.com/180DAY-c55e1858a3a9c28aa320fa4f29fd78bb/420/420/Image/Png/noFilter" alt="Logo Custom Audio" />
+                        Custom Audio
+                    </a>
+                </div>
+                <div class="pass-card" role="listitem">
+                    <a href="https://www.roblox.com/game-pass/7953105/Garages" target="_blank" rel="noopener" title="Garages">
+                        <img src="https://tr.rbxcdn.com/180DAY-0357d043b753a56260dc54b28b787ecc/420/420/Image/Png/noFilter" alt="Logo Garages" />
+                        Garages
+                    </a>
+                </div>
+                <div class="pass-card" role="listitem">
+                    <a href="https://www.roblox.com/game-pass/7953049/Larger-Backpack" target="_blank" rel="noopener" title="Larger Backpack">
+                        <img src="https://tr.rbxcdn.com/180DAY-189c11772217ed445d416eae8e9e036e/420/420/Image/Png/noFilter" alt="Logo Larger Backpack" />
+                        Larger Backpack
+                    </a>
+                </div>
+                <div class="pass-card" role="listitem">
+                    <a href="https://www.roblox.com/game-pass/10560936/Crews" target="_blank" rel="noopener" title="Crews">
+                        <img src="https://tr.rbxcdn.com/180DAY-a46ecb91ec1ec26e95fe4a7804208fe3/420/420/Image/Png/noFilter" alt="Logo Crews" />
+                        Crews
+                    </a>
+                </div>
+            </div>
         </section>
     </main>
     <footer>
-        <p>&copy; 2023 Mi Sitio Web. Todos los derechos reservados.</p>
+        <p>© 2025 Anomic - Roblox Game</p>
     </footer>
+
+    <script>
+        // Navegación entre secciones con cambio de clase active en nav
+        const navLinks = {
+            about: document.getElementById('nav-about'),
+            store: document.getElementById('nav-store'),
+            servers: document.getElementById('nav-servers'),
+            passes: document.getElementById('nav-passes')
+        };
+
+        const sections = {
+            about: document.getElementById('about'),
+            store: document.getElementById('store'),
+            servers: document.getElementById('servers'),
+            passes: document.getElementById('passes')
+        };
+
+        function showSection(sectionKey) {
+            for (const key in sections) {
+                if (key === sectionKey) {
+                    sections[key].classList.add('active');
+                    navLinks[key].classList.add('active');
+                } else {
+                    sections[key].classList.remove('active');
+                    navLinks[key].classList.remove('active');
+                }
+            }
+            // Scroll top suave al cambiar sección
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        navLinks.about.addEventListener('click', () => showSection('about'));
+        navLinks.store.addEventListener('click', () => showSection('store'));
+        navLinks.servers.addEventListener('click', () => showSection('servers'));
+        navLinks.passes.addEventListener('click', () => showSection('passes'));
+    </script>
 </body>
 </html>
+```
