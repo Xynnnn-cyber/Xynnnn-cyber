@@ -1,4 +1,3 @@
-```html
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -88,6 +87,43 @@
         .btn-store:hover {
             background-color: #e63600;
         }
+        .passes-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+        .pass-card {
+            background-color: #1f1f1f;
+            border-radius: 8px;
+            width: 180px;
+            padding: 10px;
+            text-align: center;
+            transition: background-color 0.3s ease;
+        }
+        .pass-card:hover {
+            background-color: #2a2a2a;
+        }
+        .pass-card img {
+            width: 100px;
+            height: 100px;
+            object-fit: contain;
+            margin-bottom: 10px;
+            border-radius: 6px;
+            background-color: transparent;
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .pass-card a {
+            color: #ff3c00;
+            font-weight: bold;
+            text-decoration: none;
+            display: block;
+            word-wrap: break-word;
+        }
+        .pass-card a:hover {
+            text-decoration: underline;
+        }
     </style>
 </head>
 <body>
@@ -108,15 +144,88 @@
         <section id="store">
             <h2>Tienda</h2>
             <p>La tienda de Anomic ofrece diversos artículos y mejoras para los jugadores. Explora las opciones para personalizar tu experiencia dentro del juego.</p>
-            <a href="https://www.roblox.com/games/4581966615/Anomic" target="_blank" class="btn-store">Visitar Tienda en Roblox</a>
+            <a href="https://www.roblox.com/games/4581966615/Anomic#!/store" target="_blank" class="btn-store">Visitar Tienda en Roblox</a>
         </section>
         <section id="servers">
             <h2>Servidores</h2>
-            <p>Actualmente no hay servidores activos para Anomic. Te recomendamos estar atento para cuando se habiliten nuevas partidas y puedas unirte a la acción.</p>
+            <p>Explora los servidores activos de Anomic y únete a la partida que prefieras.</p>
+            <a href="https://www.roblox.com/games/4581966615/Anomic#!/game-instances" target="_blank" class="btn-store">Ver Servidores en Roblox</a>
         </section>
         <section id="passes">
             <h2>Pases</h2>
-            <p>En este momento no hay pases disponibles para Anomic. Los pases suelen ofrecer ventajas o contenido exclusivo dentro del juego.</p>
+            <p>A continuación puedes ver los pases disponibles para Anomic. Haz clic en cualquiera para obtener más información o adquirirlos en Roblox.</p>
+            <div class="passes-container">
+                <!-- Pass 1 -->
+                <div class="pass-card">
+                    <a href="https://www.roblox.com/game-pass/671178844/Advanced-Building" target="_blank" title="Advanced Building">
+                        <img src="https://www.roblox.com/asset-thumbnail/image?assetId=671178844&width=100&height=100&format=png" alt="Advanced Building" />
+                        Advanced Building
+                    </a>
+                </div>
+                <!-- Pass 2 -->
+                <div class="pass-card">
+                    <a href="https://www.roblox.com/game-pass/1009639528/Custom-VHS-Tapes" target="_blank" title="Custom VHS Tapes">
+                        <img src="https://www.roblox.com/asset-thumbnail/image?assetId=1009639528&width=100&height=100&format=png" alt="Custom VHS Tapes" />
+                        Custom VHS Tapes
+                    </a>
+                </div>
+                <!-- Pass 3 -->
+                <div class="pass-card">
+                    <a href="https://www.roblox.com/game-pass/7953111/Advanced-Car-Dealer" target="_blank" title="Advanced Car Dealer">
+                        <img src="https://www.roblox.com/asset-thumbnail/image?assetId=7953111&width=100&height=100&format=png" alt="Advanced Car Dealer" />
+                        Advanced Car Dealer
+                    </a>
+                </div>
+                <!-- Pass 4 -->
+                <div class="pass-card">
+                    <a href="https://www.roblox.com/game-pass/11509035/Bypass-Team-Limit" target="_blank" title="Bypass Team Limit">
+                        <img src="https://www.roblox.com/asset-thumbnail/image?assetId=11509035&width=100&height=100&format=png" alt="Bypass Team Limit" />
+                        Bypass Team Limit
+                    </a>
+                </div>
+                <!-- Pass 5 -->
+                <div class="pass-card">
+                    <a href="https://www.roblox.com/game-pass/7953108/Advanced-Gunsmith" target="_blank" title="Advanced Gunsmith">
+                        <img src="https://www.roblox.com/asset-thumbnail/image?assetId=7953108&width=100&height=100&format=png" alt="Advanced Gunsmith" />
+                        Advanced Gunsmith
+                    </a>
+                </div>
+                <!-- Pass 6 -->
+                <div class="pass-card">
+                    <a href="https://www.roblox.com/game-pass/7953113/SWAT" target="_blank" title="SWAT">
+                        <img src="https://www.roblox.com/asset-thumbnail/image?assetId=7953113&width=100&height=100&format=png" alt="SWAT" />
+                        SWAT
+                    </a>
+                </div>
+                <!-- Pass 7 -->
+                <div class="pass-card">
+                    <a href="https://www.roblox.com/game-pass/7953104/Custom-Audio" target="_blank" title="Custom Audio">
+                        <img src="https://www.roblox.com/asset-thumbnail/image?assetId=7953104&width=100&height=100&format=png" alt="Custom Audio" />
+                        Custom Audio
+                    </a>
+                </div>
+                <!-- Pass 8 -->
+                <div class="pass-card">
+                    <a href="https://www.roblox.com/game-pass/7953105/Garages" target="_blank" title="Garages">
+                        <img src="https://www.roblox.com/asset-thumbnail/image?assetId=7953105&width=100&height=100&format=png" alt="Garages" />
+                        Garages
+                    </a>
+                </div>
+                <!-- Pass 9 -->
+                <div class="pass-card">
+                    <a href="https://www.roblox.com/game-pass/7953049/Larger-Backpack" target="_blank" title="Larger Backpack">
+                        <img src="https://www.roblox.com/asset-thumbnail/image?assetId=7953049&width=100&height=100&format=png" alt="Larger Backpack" />
+                        Larger Backpack
+                    </a>
+                </div>
+                <!-- Pass 10 -->
+                <div class="pass-card">
+                    <a href="https://www.roblox.com/game-pass/10560936/Crews" target="_blank" title="Crews">
+                        <img src="https://www.roblox.com/asset-thumbnail/image?assetId=10560936&width=100&height=100&format=png" alt="Crews" />
+                        Crews
+                    </a>
+                </div>
+            </div>
         </section>
     </main>
     <footer>
@@ -124,7 +233,7 @@
     </footer>
 
     <script>
-        // Obtener todos los enlaces del nav
+        // Navegación entre secciones
         const navLinks = {
             about: document.getElementById('nav-about'),
             store: document.getElementById('nav-store'),
@@ -132,7 +241,6 @@
             passes: document.getElementById('nav-passes')
         };
 
-        // Obtener todas las secciones
         const sections = {
             about: document.getElementById('about'),
             store: document.getElementById('store'),
@@ -140,7 +248,6 @@
             passes: document.getElementById('passes')
         };
 
-        // Función para mostrar una sección y ocultar las demás
         function showSection(sectionKey) {
             for (const key in sections) {
                 if (key === sectionKey) {
@@ -151,7 +258,6 @@
             }
         }
 
-        // Agregar eventos click a cada enlace para mostrar la sección correspondiente
         navLinks.about.addEventListener('click', () => showSection('about'));
         navLinks.store.addEventListener('click', () => showSection('store'));
         navLinks.servers.addEventListener('click', () => showSection('servers'));
@@ -159,4 +265,3 @@
     </script>
 </body>
 </html>
-```
