@@ -1,3 +1,4 @@
+```html
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -34,6 +35,7 @@
             text-decoration: none;
             font-weight: bold;
             font-size: 1.1em;
+            cursor: pointer;
         }
         nav a:hover {
             color: #ff3c00;
@@ -42,9 +44,14 @@
             max-width: 900px;
             margin: 40px auto;
             padding: 0 20px;
+            min-height: 300px;
         }
         section {
+            display: none;
             margin-bottom: 40px;
+        }
+        section.active {
+            display: block;
         }
         h2 {
             border-bottom: 2px solid #ff3c00;
@@ -88,13 +95,13 @@
         <h1>Anomic</h1>
     </header>
     <nav>
-        <a href="#about">Acerca de</a>
-        <a href="#store">Tienda</a>
-        <a href="#servers">Servidores</a>
-        <a href="#passes">Pases</a>
+        <a id="nav-about">Acerca de</a>
+        <a id="nav-store">Tienda</a>
+        <a id="nav-servers">Servidores</a>
+        <a id="nav-passes">Pases</a>
     </nav>
     <main>
-        <section id="about">
+        <section id="about" class="active">
             <h2>Acerca de Anomic</h2>
             <p>Anomic es un juego de Roblox que ofrece una experiencia única y emocionante. Actualmente, no hay partidas en curso, pero puedes explorar la tienda y los pases disponibles para mejorar tu experiencia cuando el juego esté activo.</p>
         </section>
@@ -115,5 +122,41 @@
     <footer>
         <p>© 2025 Anomic - Roblox Game</p>
     </footer>
+
+    <script>
+        // Obtener todos los enlaces del nav
+        const navLinks = {
+            about: document.getElementById('nav-about'),
+            store: document.getElementById('nav-store'),
+            servers: document.getElementById('nav-servers'),
+            passes: document.getElementById('nav-passes')
+        };
+
+        // Obtener todas las secciones
+        const sections = {
+            about: document.getElementById('about'),
+            store: document.getElementById('store'),
+            servers: document.getElementById('servers'),
+            passes: document.getElementById('passes')
+        };
+
+        // Función para mostrar una sección y ocultar las demás
+        function showSection(sectionKey) {
+            for (const key in sections) {
+                if (key === sectionKey) {
+                    sections[key].classList.add('active');
+                } else {
+                    sections[key].classList.remove('active');
+                }
+            }
+        }
+
+        // Agregar eventos click a cada enlace para mostrar la sección correspondiente
+        navLinks.about.addEventListener('click', () => showSection('about'));
+        navLinks.store.addEventListener('click', () => showSection('store'));
+        navLinks.servers.addEventListener('click', () => showSection('servers'));
+        navLinks.passes.addEventListener('click', () => showSection('passes'));
+    </script>
 </body>
 </html>
+```
